@@ -32,3 +32,4 @@ Thumbs.db
 
 # Kubernetes
 *.yaml~
+actions-runner/
