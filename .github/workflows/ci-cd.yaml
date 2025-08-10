@@ -36,4 +36,22 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/backend-python:latest
 
-      # Java backend ke liye bhi similar step add karein
+      - name: Build and push java-backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./java-backend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/java-backend:latest
+
+  deploy:
+    runs-on: self-hosted
+    needs: build-and-push
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Deploy to Minikube
+        run: |
+          kubectl apply -f k8s-manifests/
+          kubectl rollout restart deployment/frontend -n dashboard
+          kubectl rollout restart deployment/backend-python -n dashboard
+          kubectl rollout restart deployment/java-backend -n dashboard
