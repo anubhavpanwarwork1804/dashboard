@@ -16,7 +16,9 @@ spec:
     spec:
       containers:
         - name: backend-python
-          image: backend-python:local
+          image: anubhav1804/backend-python:latest
+          imagePullPolicy: Always
+
           ports:
             - containerPort: 5000
 

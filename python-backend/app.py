@@ -6,7 +6,7 @@ CORS(app)  # Allow requests from frontend
 
 @app.route('/status')
 def status():
-    return jsonify({"message": "Python Service is Running"})
+    return jsonify({"message": "Python Service is Running ab to cicd b chl gyi"})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
