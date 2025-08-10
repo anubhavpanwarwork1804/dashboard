@@ -17,6 +17,16 @@ spec:
                 name: backend-python-service
                 port:
                   number: 5000
+
+
+          - path: /java-api/(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: java-backend
+                port:
+                  number: 8080
+                  
           - path: /(.*)
             pathType: Prefix
             backend:
